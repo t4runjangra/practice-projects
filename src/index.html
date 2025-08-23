@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link href="./output.css" rel="stylesheet">
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-900 select-none">
+
+  <div class="bg-gray-800 p-6 rounded-2xl shadow-lg w-80">
+    
+    <div id="display" class="bg-gray-700 text-white text-right text-2xl font-mono p-4 rounded-lg mb-4 h-16 flex items-center justify-end">
+      0
+    </div>
+
+    <div class="grid grid-cols-4 gap-3">
+      
+      <button data-value="clear" class="bg-red-500 hover:bg-red-600 text-white rounded-lg py-3">C</button>
+      <button data-value="delete" class="bg-gray-600 hover:bg-gray-500 text-white rounded-lg py-3">DEL</button>
+      <button data-value="%" class="bg-gray-600 hover:bg-gray-500 text-white rounded-lg py-3">%</button>
+      <button data-value="/" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-3">÷</button>
+
+      <button data-value="7" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">7</button>
+      <button data-value="8" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">8</button>
+      <button data-value="9" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">9</button>
+      <button data-value="*" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-3">×</button>
+
+      <button data-value="4" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">4</button>
+      <button data-value="5" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">5</button>
+      <button data-value="6" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">6</button>
+      <button data-value="-" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-3">-</button>
+
+      <button data-value="1" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">1</button>
+      <button data-value="2" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">2</button>
+      <button data-value="3" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">3</button>
+      <button data-value="+" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-3">+</button>
+
+      <button data-value="0" class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3 col-span-2">0</button>
+      <button data-value="." class="bg-gray-700 hover:bg-gray-600 text-white rounded-lg py-3">.</button>
+      <button data-value="=" class="bg-green-500 hover:bg-green-600 text-white rounded-lg py-3">=</button>
+    </div>
+  </div>
+</body>
+<script src="/src/script.js"></script>
+</html>
+
+
+
