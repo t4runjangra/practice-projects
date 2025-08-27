@@ -1,0 +1,198 @@
+/* ===== CSS Variables (light/dark aware) ===== */
+:root {
+  --bg: #0b0c10;
+  --panel: #111318;
+  --panel-2: #171a21;
+  --text: #e9eef5;
+  --muted: #aab3c5;
+  --accent: #4da3ff;
+  --accent-2: #7bc4ff;
+  --ring: 0 0 0 2px rgba(77, 163, 255, 0.35);
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f7fb;
+    --panel: #ffffff;
+    --panel-2: #f2f4f8;
+    --text: #0f172a;
+    --muted: #5b6477;
+    --accent: #2563eb;
+    --accent-2: #3b82f6;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+}
+
+/* ===== Base ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 70% -10%, rgba(77,163,255,0.12), transparent 60%) , var(--bg);
+}
+
+img { max-width: 100%; display: block; }
+h1, h2 { margin: 0 0 .5rem; line-height: 1.1; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); border: 0;
+}
+
+/* ===== Layout ===== */
+.site-header {
+  padding: 28px 20px 4px;
+  text-align: center;
+}
+.site-title { font-size: clamp(24px, 5vw, 36px); font-weight: 800; letter-spacing: .2px; }
+.site-subtitle { margin-top: 6px; font-size: 14px; color: var(--muted); }
+
+.app {
+  max-width: 960px;
+  margin: 18px auto 40px;
+  padding: 0 16px;
+  display: grid;
+  gap: 16px;
+}
+
+/* ===== Controls ===== */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr minmax(140px, 180px) auto;
+  gap: 10px;
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+@media (max-width: 640px) {
+  .controls { grid-template-columns: 1fr; }
+}
+
+.input, .select, .btn {
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: var(--panel-2);
+  color: var(--text);
+  padding: 0 12px;
+  outline: none;
+}
+.input, .select { width: 100%; }
+.input::placeholder { color: var(--muted); }
+
+.input:focus, .select:focus {
+  border-color: var(--accent);
+  box-shadow: var(--ring);
+}
+.select-wrap { display: grid; gap: 6px; align-content: start; }
+.select-label { font-size: 12px; color: var(--muted); padding-left: 2px; }
+
+.btn {
+  cursor: pointer;
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: white;
+  font-weight: 700;
+  padding: 0 16px;
+  border: none;
+  transition: transform .04s ease, filter .2s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:disabled { filter: grayscale(.6) opacity(.7); cursor: not-allowed; }
+
+/* ===== Status / Error ===== */
+.status, .error {
+  min-height: 22px;
+  padding: 0 4px;
+  font-size: 14px;
+}
+.error { color: #ff6b6b; }
+
+/* ===== Cards ===== */
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+}
+.card-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.card-title { font-size: 18px; font-weight: 800; }
+
+/* ===== Current Weather ===== */
+.current-wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 720px) {
+  .current-wrap { grid-template-columns: 1fr; }
+}
+
+.current-main { display: grid; gap: 8px; }
+.place { font-size: 18px; font-weight: 600; }
+.temp-line { display: flex; align-items: center; gap: 12px; }
+.temp { font-size: clamp(40px, 8vw, 64px); font-weight: 800; letter-spacing: -.5px; }
+.desc { font-size: 14px; text-transform: capitalize; }
+
+.weather-icon {
+  width: 64px; height: 64px; object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,.18));
+}
+
+/* Stats grid */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 4px;
+}
+.stats dt { font-size: 12px; color: var(--muted); }
+.stats dd { margin: 2px 0 0; font-weight: 700; }
+
+/* ===== Forecast ===== */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+@media (max-width: 720px) {
+  .forecast-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 460px) {
+  .forecast-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.day {
+  background: var(--panel-2);
+  border-radius: 14px;
+  padding: 12px;
+  display: grid; gap: 8px; place-items: center;
+}
+.day-name { font-weight: 700; }
+.day-temps { display: flex; gap: 8px; align-items: baseline; }
+.day-temps span:first-child { font-weight: 800; }
+
+/* ===== Utilities ===== */
+.hidden { display: none !important; }
+
+/* Simple skeleton class (optional, toggle via JS) */
+.skeleton {
+  position: relative; overflow: hidden; background: var(--panel-2);
+}
+.skeleton::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.15), transparent);
+  animation: shimmer 1.2s infinite;
+}
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+/* ===== Footer ===== */
+.site-footer { text-align: center; padding: 18px; }
