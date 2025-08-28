@@ -9,11 +9,51 @@ body {
   color: #ffffff;
   font-family: Arial, sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
-
+.nav-container{
+  position: fixed;
+  top: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  height: 24px;
+}
+.navBar{
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.navBar ul{
+  list-style: none;
+  display: flex;
+  width: 80%;
+  justify-content: end;
+}
+.navBar ul li{
+  margin: 25px;
+  color: #fff;
+}
+.navBar h2{
+  margin-left: 15px;
+  width: 50%;
+}
+.dark-mode{
+  background: none;
+  color: #fff;
+  border: none;
+  height: 100%;
+}
+#githubLogo{
+  color: #fff;
+}
 .container {
   background-color: #1e1e1e;
   padding: 20px;
@@ -59,7 +99,7 @@ h1 {
   list-style: none;
 }
 
-#todo-list li {
+#todo-list .listitems {
   background-color: #2a2a2a;
   margin: 8px 0;
   padding: 10px;
