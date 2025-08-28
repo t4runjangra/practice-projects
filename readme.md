@@ -29,8 +29,14 @@ A weather app that fetches real-time weather data using the **OpenWeather API**.
 
 ---
 
+## 🐙 [GitHub Profile Viewer](https://githubprofileviewer-rose.vercel.app/)
+A web app that fetches and displays GitHub user profiles using the **GitHub API**.  
+- Shows user information like **avatar, bio, followers, and public repositories**.  
+- Fetches repositories dynamically with stars, forks, and language details.  
+- Practiced **API integration, JSON handling, and dynamic UI rendering**.
+
+---
+
 ### 📌 Purpose
 These projects are for **practice and learning** JavaScript fundamentals, including DOM manipulation, API handling, and browser storage.  
 They helped me strengthen my understanding of **frontend development**.
-
----
