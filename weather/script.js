@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
     const cityInput = document.getElementById("city-input")
     const getWeatherButton = document.getElementById("get-weather-btn")
     const weatherInfo = document.getElementById("weather-info")
@@ -6,15 +6,26 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const temperature = document.getElementById("temperature")
     const description = document.getElementById("description")
     const errorMessage = document.getElementById("error-message")
+    const themeToggle = document.getElementById("theme-toggle");
+    
+    themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        if (document.body.classList.contains("light-mode")) {
+            themeToggle.textContent = "🌞";
+        } else {
+            themeToggle.textContent = "🌙";
+        }
+    });
+
 
     const apiKey = "ca51ed6a78b9aaa16b5dc64b667e289b"
-    getWeatherButton.addEventListener("click",async ()=>{
+    getWeatherButton.addEventListener("click", async () => {
         const city = cityInput.value.trim()
-        if(!city) return;
+        if (!city) return;
         try {
             const weatherData = await getWeatherData(city)
             displayDataFromApi(weatherData);
-            
+
         } catch (error) {
             showError();
         }
@@ -29,14 +40,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const data = await response.json();
         return data;
     }
-    function displayDataFromApi(data){
+    function displayDataFromApi(data) {
         weatherInfo.classList.remove("hidden")
         cityName.innerHTML = data.name
         temperature.innerHTML = `${Math.floor(data.main.temp - 273.15)}°C`;
         description.innerHTML = data.weather[0].description;
-                
+
     }
-    function showError(){
+    function showError() {
         weatherInfo.classList.add("hidden")
         errorMessage.classList.remove("hidden")
     }
