@@ -1,110 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Weather App • Starter UI</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <h1 class="site-title">Weather</h1>
-    <p class="site-subtitle">Type a city and fetch current weather + 5-day forecast</p>
-  </header>
-
-   <main class="app">
-    <form class="controls" id="search-form" autocomplete="off" aria-label="Search weather by city">
-      <label class="sr-only" for="q">City</label>
-      <input
-        id="q"
-        name="q"
-        class="input"
-        type="text"
-        placeholder="Search city… (e.g., Panipat)"
-        list="city-list"
-        required
-        aria-required="true"
-      />
-      <datalist id="city-list">
-        <option value="Panipat"></option>
-        <option value="Delhi"></option>
-        <option value="Mumbai"></option>
-        <option value="Bengaluru"></option>
-        <option value="Chandigarh"></option>
-      </datalist>
-
-      <label class="select-wrap" for="units">
-        <span class="select-label">Units</span>
-        <select id="units" name="units" class="select">
-          <option value="metric">Metric (°C, m/s)</option>
-          <option value="imperial">Imperial (°F, mph)</option>
-        </select>
-      </label>
-
-      <button id="search-btn" class="btn" type="submit">Get Weather</button>
-    </form>
-
-    <div id="status" class="status" role="status" aria-live="polite"></div>
-    <div id="error" class="error" role="alert" aria-live="assertive"></div>
-
-    <section class="card" id="current" aria-labelledby="current-title">
-      <div class="card-head">
-        <h2 class="card-title" id="current-title">Current</h2>
-        <time id="updated" class="muted" datetime=""></time>
-      </div>
-
-      <div class="current-wrap">
-        <div class="current-main">
-          <div class="temp-line">
-            <img id="current-icon" class="weather-icon" alt="" src="" />
-            <div>
-              <div id="temp" class="temp">--</div>
-              <div id="desc" class="desc muted">—</div>
-            </div>
-          </div>
-          <div id="place" class="place">—</div>
-        </div>
-
-        <dl class="stats">
-          <div>
-            <dt>Feels like</dt>
-            <dd id="feels">—</dd>
-          </div>
-          <div>
-            <dt>Humidity</dt>
-            <dd id="humidity">—</dd>
-          </div>
-          <div>
-            <dt>Wind</dt>
-            <dd id="wind">—</dd>
-          </div>
-          <div>
-            <dt>Pressure</dt>
-            <dd id="pressure">—</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="card" id="forecast" aria-labelledby="forecast-title">
-      <h2 class="card-title" id="forecast-title">5-Day Forecast</h2>
-      <div id="forecast-grid" class="forecast-grid">
-        <!-- JS: inject day cards here -->
-        <!-- Example structure:
-        <div class="day">
-          <div class="day-name">Mon</div>
-          <img class="weather-icon" alt="clear sky" src="..." />
-          <div class="day-temps"><span>32°</span><span class="muted">24°</span></div>
-        </div>
-        -->
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer muted">
-    <small>
-      Built for API practice. Replace placeholders via JS.
-    </small>
-  </footer>
+  <div class="container">
+    <h1>Weather App</h1>
+    <div class="input-container">
+      <input type="text" id="city-input" placeholder="Enter city name" />
+      <button id="get-weather-btn">Get Weather</button>
+    </div>
+    <div id="weather-info" class="hidden">
+      <h2 id="city-name"></h2>
+      <p id="temperature"></p>
+      <p id="description"></p>
+    </div>
+    <p id="error-message" class="hidden">City not found. Please try again.</p>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
