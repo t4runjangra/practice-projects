@@ -59,7 +59,7 @@ button:hover {
   margin: 5px 0;
 }
 
-#cart-total {
+.cart-total {
   display: flex;
   justify-content: space-between;
   align-items: center;

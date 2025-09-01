@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
         {id:3,name:"Product 3",price:49.99}
     ]
     const cart = []
+    
     products.forEach(product => {
         const div = document.createElement("div")
         div.classList.add("product")
@@ -25,8 +26,32 @@ document.addEventListener("DOMContentLoaded", () => {
            const productiD =  parseInt(e.target.getAttribute("data-id"))
            const product =products.find((p) => p.id=== productiD)
            cart.push(product)
-           console.log(cart);
+            renderTask();
         }
     })
-    
+    function renderTask(){
+        cartItems.innerHTML ="";
+        let totalPriceOfItems = 0
+        if (cart.length>0) {
+            emptyCart.classList.add("hidden")
+            cardTotal.classList.remove("hidden")
+            cart.forEach((item, index)=>{
+                totalPriceOfItems +=item.price
+                const cartItemDiv = document.createElement("div")
+                cartItemDiv.innerHTML = `
+                    ${item.name} - $${item.price}
+                `
+                cartItems.appendChild(cartItemDiv)
+                totalPrice.textContent = `${totalPriceOfItems.toFixed(2)}`
+            })
+        }
+        else{
+            cardTotal.classList.add("hidden")
+            totalPrice.textContent = `$0.00`
+        }
+    checkoutBtn.addEventListener("click",()=>{
+        cart.length = 0
+        renderTask();
+    })    
+    }
 })
