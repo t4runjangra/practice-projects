@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const avatar = document.getElementById("avatar")
     const skeleton = document.getElementById("skeleton")
     const repoSection = document.getElementById("repoSection")
-    
+
     function setupEventListeners() {
         inputField.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 performSearch();
             }
         });
-        
+
         searchBtn.addEventListener("click", performSearch);
     }
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const repo1Stars = document.getElementById("repo1Stars")
         const repo1Forks = document.getElementById("repo1Forks")
         const repo1Lang = document.getElementById("repo1Lang")
-        
+
         const lastRepo = JSONrepoData.at(-1);
         repo1Link.href = lastRepo.svn_url
         repo1Link.innerHTML = `📂 <b>${lastRepo.name}</b>`
@@ -77,12 +77,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         repo1Forks.innerHTML = `🍴 ${lastRepo.forks}`
         repo1Stars.innerHTML = `⭐ ${lastRepo.stargazers_count}`
-        
+
         const repo2Link = document.getElementById("repo2Link")
         const repo2Stars = document.getElementById("repo2Stars")
         const repo2Forks = document.getElementById("repo2Forks")
         const repo2Lang = document.getElementById("repo2Lang")
-        
+
         const lastSecondRepo = JSONrepoData.at(-2);
         repo2Link.href = lastSecondRepo.svn_url
         repo2Link.innerHTML = `📂 <b>${lastSecondRepo.name}</b>`
@@ -95,12 +95,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         repo2Forks.innerHTML = `🍴 ${lastSecondRepo.forks}`
         repo2Stars.innerHTML = `⭐ ${lastSecondRepo.stargazers_count}`
-        
+
         const repo3Link = document.getElementById("repo3Link")
         const repo3Stars = document.getElementById("repo3Stars")
         const repo3Forks = document.getElementById("repo3Forks")
         const repo3Lang = document.getElementById("repo3Lang")
-        
+
         const lastThirdRepo = JSONrepoData.at(-3);
         repo3Link.href = lastThirdRepo.svn_url
         repo3Link.innerHTML = `📂 <b>${lastThirdRepo.name}</b>`
@@ -115,10 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
         async function repoapi(data) {
             const repoUrl = data
             const repoApiData = await fetch(repoUrl)
-            const repoResponse = await repoApiData.json()  
+            const repoResponse = await repoApiData.json()
             return repoResponse
         }
     }
-    
+
     setupEventListeners();
 })
