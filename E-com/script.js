@@ -49,9 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
             cardTotal.classList.add("hidden")
             totalPrice.textContent = `$0.00`
         }
-    checkoutBtn.addEventListener("click",()=>{
+    }
+    checkoutBtn.addEventListener("click",()=>{        
         cart.length = 0
+        alert("Confirm Checkout")
         renderTask();
     })    
-    }
 })
