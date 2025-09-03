@@ -67,50 +67,57 @@ document.addEventListener("DOMContentLoaded", () => {
         const repo1Forks = document.getElementById("repo1Forks")
         const repo1Lang = document.getElementById("repo1Lang")
 
-        const lastRepo = JSONrepoData.at(-1);
-        repo1Link.href = lastRepo.svn_url
-        repo1Link.innerHTML = `📂 <b>${lastRepo.name}</b>`
-        if (lastRepo.language === null) {
+        const lastRepo = JSONrepoData;
+        lastRepo.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at))
+        const latest = lastRepo[0];     
+        
+        repo1Link.href = latest.svn_url;
+        repo1Link.innerHTML = `📂 <b>${latest.name}</b>`
+        if (latest.language === null) {
             repo1Lang.innerHTML = `💻 No Data Found`
         } else {
-            repo1Lang.innerHTML = `💻 ${lastRepo.language}`
+            repo1Lang.innerHTML = `💻 ${latest.language}`
         }
-        repo1Forks.innerHTML = `🍴 ${lastRepo.forks}`
-        repo1Stars.innerHTML = `⭐ ${lastRepo.stargazers_count}`
-
+        repo1Forks.innerHTML = `🍴 ${latest.forks}`
+        repo1Stars.innerHTML = `⭐ ${latest.stargazers_count}`
+        
         const repo2Link = document.getElementById("repo2Link")
         const repo2Stars = document.getElementById("repo2Stars")
         const repo2Forks = document.getElementById("repo2Forks")
         const repo2Lang = document.getElementById("repo2Lang")
-
-        const lastSecondRepo = JSONrepoData.at(-2);
-        repo2Link.href = lastSecondRepo.svn_url
-        repo2Link.innerHTML = `📂 <b>${lastSecondRepo.name}</b>`
-
-        if (lastSecondRepo.language === null) {
+        
+        const lastSecondRepo = JSONrepoData;
+        lastSecondRepo.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at))
+        const secondLatest = lastSecondRepo[1];
+        repo2Link.href = secondLatest.svn_url
+        repo2Link.innerHTML = `📂 <b>${secondLatest.name}</b>`
+        
+        if (secondLatest.language === null) {
             repo2Lang.innerHTML = `💻 No Data Found`
         } else {
-            repo2Lang.innerHTML = `💻 ${lastSecondRepo.language}`
+            repo2Lang.innerHTML = `💻 ${secondLatest.language}`
         }
-
-        repo2Forks.innerHTML = `🍴 ${lastSecondRepo.forks}`
-        repo2Stars.innerHTML = `⭐ ${lastSecondRepo.stargazers_count}`
-
+        
+        repo2Forks.innerHTML = `🍴 ${secondLatest.forks}`
+        repo2Stars.innerHTML = `⭐ ${secondLatest.stargazers_count}`
+        
         const repo3Link = document.getElementById("repo3Link")
         const repo3Stars = document.getElementById("repo3Stars")
         const repo3Forks = document.getElementById("repo3Forks")
         const repo3Lang = document.getElementById("repo3Lang")
-
-        const lastThirdRepo = JSONrepoData.at(-3);
-        repo3Link.href = lastThirdRepo.svn_url
-        repo3Link.innerHTML = `📂 <b>${lastThirdRepo.name}</b>`
-        if (lastThirdRepo.language === null) {
+        
+        const lastThirdRepo = JSONrepoData;
+        lastThirdRepo.sort((a,b)=> new Date(b.updated_at) - new Date(a.updated_at))
+        const thirdlatest = lastRepo[2];     
+        repo3Link.href = thirdlatest.svn_url
+        repo3Link.innerHTML = `📂 <b>${thirdlatest.name}</b>`
+        if (thirdlatest.language === null) {
             repo3Lang.innerHTML = `💻 No Data Found`
         } else {
-            repo3Lang.innerHTML = `💻 ${lastThirdRepo.language}`
+            repo3Lang.innerHTML = `💻 ${thirdlatest.language}`
         }
-        repo3Forks.innerHTML = `🍴 ${lastThirdRepo.forks}`
-        repo3Stars.innerHTML = `⭐ ${lastThirdRepo.stargazers_count}`
+        repo3Forks.innerHTML = `🍴 ${thirdlatest.forks}`
+        repo3Stars.innerHTML = `⭐ ${thirdlatest.stargazers_count}`
 
         async function repoapi(data) {
             const repoUrl = data
@@ -122,3 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setupEventListeners();
 })
+
+
+// updated_at: "2025-08-26T07:27:08Z"
