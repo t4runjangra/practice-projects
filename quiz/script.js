@@ -9,7 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const marksDisplay = document.getElementById("marks");
     const restartBtn = document.getElementById("restart-btn");
     const questionNumberDisplay = document.getElementById("question-number")
-
+    const mainWrapper = document.querySelector(".main-wrapper")
+    const createQuizBtn= document.getElementById("create-quiz-btn")
+    const createQuizForm= document.getElementById("create-quiz-form")
+    const quizContainer = document.getElementById("container")
+    const quizCreateContainer = document.querySelector(".quiz-creator")
+    const questionInput = document.querySelector("#question-input")
+    const choice1 = document.querySelector("#choice1")
+    const choice2 = document.querySelector("#choice2")
+    const choice3 = document.querySelector("#choice3")
+    const choice4 = document.querySelector("#choice4")
+    const correctAnswerInput = document.querySelector("#correct-answer")
+    const addQuestionBtn = document.getElementById("add-question-btn")
+    const startQuizBtn = document.getElementById("startQuizBtn")
+    const userMarks = document.getElementById("Marks")
+    let userQuestions = []
+    
+    let currentQuestion = []
+   
     const questions = [
         {
             question: "What does HTML stand for?",
@@ -73,6 +90,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
+    currentQuestion = questions
+    createQuizBtn.addEventListener("click",()=>{
+        createQuizBtn.classList.add("hidden")
+        createQuizForm.classList.remove("hidden")
+        quizContainer.classList.add("hidden")
+        mainWrapper.style.flexDirection = "column";
+        quizCreateContainer.style.maxWidth = "680px"
+        mainWrapper.style.Width = "70vw"
+
+    })
+    
+    createQuizForm.addEventListener("submit",(e)=>{
+        e.preventDefault()
+    })
+
+    addQuestionBtn.addEventListener("click",()=>{
+        let userQuestionInput = questionInput.value.trim()
+        let userChoice1 = choice1.value.trim()
+        let userChoice2 = choice2.value.trim()
+        let userChoice3 = choice3.value.trim()
+        let userChoice4 = choice4.value.trim()
+        let userMarksFromInput = Number(userMarks.value)
+        let userAnswer = correctAnswerInput.value
+        console.log(typeof userMarksFromInput);
+        console.log(userMarksFromInput);
+        
+        let newQuestion ={
+            question: userQuestionInput ,
+            choices: [userChoice1, userChoice2, userChoice3, userChoice4],
+            answer: Number(userAnswer) ,
+            marks: Number(userMarksFromInput)          
+        }
+        
+        userQuestions.push(newQuestion)
+        questionInput.value = ""
+        choice1.value = ""
+        choice2.value = ""
+        choice3.value = ""
+        choice4.value = ""
+        correctAnswerInput.value = ""
+    })
+
+    startQuizBtn.addEventListener("click",()=>{
+            quizCreateContainer.classList.add("hidden")
+            quizContainer.classList.remove("hidden")
+            currentQuestion = userQuestions
+    })
+
     let currentIndex = 0
     let score = 0
     let questionNumber = 1
@@ -83,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     nextBtn.addEventListener("click", () => {
         currentIndex++
 
-        if (currentIndex < questions.length) {
+        if (currentIndex < currentQuestion.length) {
             showQuestion()
         } else {
             showResult()
@@ -93,33 +158,42 @@ document.addEventListener("DOMContentLoaded", () => {
         startBtn.classList.add("hidden")
         resultContainer.classList.add("hidden")
         questionContainer.classList.remove("hidden")
+        quizCreateContainer.classList.add("hidden")
         showQuestion();
     }
     function showQuestion() {
         questionNumberDisplay.classList.remove("hidden")
-        questionNumberDisplay.textContent = ` - ${questionNumber}/${questions.length}`
+        questionNumberDisplay.textContent = ` - ${questionNumber}/${currentQuestion.length}`
         questionNumber++
         nextBtn.classList.add("hidden")
 
-        totalMarks += questions[currentIndex].marks
+        totalMarks += currentQuestion[currentIndex].marks
 
-        questionText.innerHTML = `${questions[currentIndex].question} 
-        <p class="eachMarks">${questions[currentIndex].marks} marks* </p>`
+        questionText.innerHTML = `${currentQuestion[currentIndex].question} 
+        <p class="eachMarks">${currentQuestion[currentIndex].marks} marks* </p>`
 
 
         choicesList.innerHTML = ""
-        questions[currentIndex].choices.forEach((choice, index) => {
+        currentQuestion[currentIndex].choices.forEach((choice, index) => {
             const li = document.createElement("li")
             li.textContent = choice
-            li.addEventListener("click", () => ( (selectAnswer(index)) , li.style.background="#918f8fff"))
+            li.addEventListener("click", () => ( (selectAnswer(index)) , li.style.background="rgba(50, 122, 255, 0.65)"))
             choicesList.appendChild(li)
 
         })
+        console.log(currentQuestion);
+        
         function selectAnswer(index) {
+            console.log(index);
+            console.log(currentIndex);
+            console.log(currentQuestion[currentIndex].answer);
+            console.log(currentQuestion[currentIndex].marks);
+            
             nextBtn.classList.remove("hidden")
-            if (index === questions[currentIndex].answer) {
-                marks += questions[currentIndex].marks
+            if (index == currentQuestion[currentIndex].answer) {
+                marks += currentQuestion[currentIndex].marks
                 score++;
+                
             }
         }
     }
@@ -127,8 +201,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function showResult() {
         resultContainer.classList.remove("hidden");
         questionContainer.classList.add("hidden");
-        scoreDisplay.textContent = `${score} out of ${questions.length}`;
+        scoreDisplay.textContent = `${score} out of ${currentQuestion.length}`;
         marksDisplay.textContent = `${marks} out of ${totalMarks}`;
+        console.log(totalMarks, marks);
+        
 
         let messageEl = document.getElementById("result-message");
         if (!messageEl) {
@@ -154,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (marks < 30) {
             resultContainer.classList.add("shake");
             setTimeout(() => resultContainer.classList.remove("shake"), 450);
-            messageEl.textContent = "🙁 Oops! You need at least 30 marks to pass. Better luck next time!";
+            messageEl.textContent = "🙁 Oops! You need at least 30% marks to pass. Better luck next time!";
 
         }
     }
@@ -164,6 +240,8 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = 0
         score = 0
         questionNumber = 1
+        marks = 0
+        totalMarks = 0
         startQuiz()
     })
 
