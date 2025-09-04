@@ -93,14 +93,11 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
   padding: 52px 0px;
   width: 100%;
+  height: 500px;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   will-change: transform, box-shadow;
-}
-.quiz-creator:hover{
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .quiz-creator h2 {
@@ -224,11 +221,6 @@ body {
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   will-change: transform, box-shadow;
 }
-.container:hover{
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
 h1 {
   margin-bottom: 30px;
   color: #1b2a49;
@@ -252,7 +244,15 @@ h1 {
   font-weight: 500;
 }
 
+#quiz-container{
+  width: 80%;
+}
+
 #choices-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   list-style: none;
   padding: 0;
   margin: 18px 0 30px;
@@ -269,6 +269,7 @@ h1 {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 1px 6px rgba(53, 74, 117, 0.15);
   user-select: none;
+  width: 100%;
 }
 
 #choices-list li:hover {
@@ -343,9 +344,6 @@ button:focus-visible {
   background-color: #ffe6e6;
   box-shadow: 0 0 12px #e74c3c;
   border-radius: 12px;
-}
-#quiz-container{
-  width: 100%;
 }
 #startQuizBtn {
   margin-top: 16px;

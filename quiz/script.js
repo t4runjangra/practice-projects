@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         quizContainer.classList.add("hidden")
         mainWrapper.style.flexDirection = "column";
         quizCreateContainer.style.maxWidth = "680px"
+        quizCreateContainer.style.height = "1500px"
         mainWrapper.style.Width = "70vw"
         createQuizForm.style.width = "80%"
 
