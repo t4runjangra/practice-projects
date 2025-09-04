@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const restartBtn = document.getElementById("restart-btn");
     const questionNumberDisplay = document.getElementById("question-number")
     const mainWrapper = document.querySelector(".main-wrapper")
-    const createQuizBtn= document.getElementById("create-quiz-btn")
-    const createQuizForm= document.getElementById("create-quiz-form")
+    const createQuizBtn = document.getElementById("create-quiz-btn")
+    const createQuizForm = document.getElementById("create-quiz-form")
     const quizContainer = document.getElementById("container")
     const quizCreateContainer = document.querySelector(".quiz-creator")
     const questionInput = document.querySelector("#question-input")
@@ -23,14 +23,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const addQuestionBtn = document.getElementById("add-question-btn")
     const startQuizBtn = document.getElementById("startQuizBtn")
     const userMarks = document.getElementById("Marks")
+
+    let currentIndex = 0
+    let score = 0
+    let questionNumber = 1
+    let marks = 0
+    let totalMarks = 0
+    let nextQue = 1
     let userQuestions = []
-    
+
     let currentQuestion = []
-   
+
     const questions = [
         {
             question: "What does HTML stand for?",
-            choices: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language","Haryanvi Tau Moti Laal"],
+            choices: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language", "Haryanvi Tau Moti Laal"],
             answer: 0,
             marks: 5
         },
@@ -91,21 +98,23 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     currentQuestion = questions
-    createQuizBtn.addEventListener("click",()=>{
+
+    createQuizBtn.addEventListener("click", () => {
         createQuizBtn.classList.add("hidden")
         createQuizForm.classList.remove("hidden")
         quizContainer.classList.add("hidden")
         mainWrapper.style.flexDirection = "column";
         quizCreateContainer.style.maxWidth = "680px"
         mainWrapper.style.Width = "70vw"
+        createQuizForm.style.width = "80%"
 
     })
-    
-    createQuizForm.addEventListener("submit",(e)=>{
+
+    createQuizForm.addEventListener("submit", (e) => {
         e.preventDefault()
     })
 
-    addQuestionBtn.addEventListener("click",()=>{
+    addQuestionBtn.addEventListener("click", () => {
         let userQuestionInput = questionInput.value.trim()
         let userChoice1 = choice1.value.trim()
         let userChoice2 = choice2.value.trim()
@@ -113,16 +122,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let userChoice4 = choice4.value.trim()
         let userMarksFromInput = Number(userMarks.value)
         let userAnswer = correctAnswerInput.value
-        console.log(typeof userMarksFromInput);
-        console.log(userMarksFromInput);
-        
-        let newQuestion ={
-            question: userQuestionInput ,
+
+        let newQuestion = {
+            question: userQuestionInput,
             choices: [userChoice1, userChoice2, userChoice3, userChoice4],
-            answer: Number(userAnswer) ,
-            marks: Number(userMarksFromInput)          
+            answer: Number(userAnswer),
+            marks: Number(userMarksFromInput)
         }
-        
+        nextQue++
+        update()
         userQuestions.push(newQuestion)
         questionInput.value = ""
         choice1.value = ""
@@ -132,17 +140,23 @@ document.addEventListener("DOMContentLoaded", () => {
         correctAnswerInput.value = ""
     })
 
-    startQuizBtn.addEventListener("click",()=>{
-            quizCreateContainer.classList.add("hidden")
-            quizContainer.classList.remove("hidden")
-            currentQuestion = userQuestions
-    })
 
-    let currentIndex = 0
-    let score = 0
-    let questionNumber = 1
-    let marks = 0
-    let totalMarks = 0
+
+    startQuizBtn.classList.add("hidden");
+    function update() {
+        if (nextQue >= 3) {
+            startQuizBtn.classList.remove("hidden");
+            startQuizBtn.onclick = () => {
+                quizCreateContainer.classList.add("hidden");
+                quizContainer.classList.remove("hidden");
+                currentQuestion = userQuestions;
+            };
+        } else {
+            startQuizBtn.classList.add("hidden");
+            startQuizBtn.onclick = null;
+        }
+    }
+
     startBtn.addEventListener("click", startQuiz)
 
     nextBtn.addEventListener("click", () => {
@@ -177,23 +191,23 @@ document.addEventListener("DOMContentLoaded", () => {
         currentQuestion[currentIndex].choices.forEach((choice, index) => {
             const li = document.createElement("li")
             li.textContent = choice
-            li.addEventListener("click", () => ( (selectAnswer(index)) , li.style.background="rgba(50, 122, 255, 0.65)"))
+            li.addEventListener("click", () => ((selectAnswer(index)), li.style.background = "rgba(50, 122, 255, 0.65)"))
             choicesList.appendChild(li)
 
         })
         console.log(currentQuestion);
-        
+
         function selectAnswer(index) {
             console.log(index);
             console.log(currentIndex);
             console.log(currentQuestion[currentIndex].answer);
             console.log(currentQuestion[currentIndex].marks);
-            
+
             nextBtn.classList.remove("hidden")
             if (index == currentQuestion[currentIndex].answer) {
                 marks += currentQuestion[currentIndex].marks
                 score++;
-                
+
             }
         }
     }
@@ -204,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         scoreDisplay.textContent = `${score} out of ${currentQuestion.length}`;
         marksDisplay.textContent = `${marks} out of ${totalMarks}`;
         console.log(totalMarks, marks);
-        
+
 
         let messageEl = document.getElementById("result-message");
         if (!messageEl) {
