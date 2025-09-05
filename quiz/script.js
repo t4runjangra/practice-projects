@@ -208,8 +208,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (index == currentQuestion[currentIndex].answer) {
                 marks += currentQuestion[currentIndex].marks
                 score++;
-
             }
+            const lis = choicesList.querySelectorAll("li");
+            lis.forEach(li => {
+                li.style.pointerEvents = "none"; 
+            })
         }
     }
 

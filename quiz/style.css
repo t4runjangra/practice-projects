@@ -391,7 +391,7 @@ button:focus-visible {
     width: 100%;
   }
   .main-wrapper {
-    flex-direction: column;
+    flex-direction: column-reverse ;
     margin: 20px auto;
   }
   .quiz-creator {
