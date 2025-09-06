@@ -25,12 +25,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const startQuizBtn = document.getElementById("startQuizBtn")
     const userMarks = document.getElementById("Marks")
     const categoryContainer = document.getElementById("category-container")
-    const categoryBtns = document.querySelectorAll(".category-btn")
     const randomQuiz = document.getElementById("random-category")
     const htmlQuizBtn = document.querySelector("#html-quiz")
     const cssQuizBtn = document.querySelector("#css-quiz")
     const jsQuizBtn = document.querySelector("#js-quiz")
-
+    const back_btn = document.getElementById("back-btn")
 
     let currentIndex = 0
     let score = 0
@@ -446,6 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
     currentQuestion = questions
 
     createQuizBtn.addEventListener("click", () => {
+        back_btn.classList.remove("hidden")
         createQuizBtn.classList.add("hidden")
         createQuizForm.classList.remove("hidden")
         quizContainer.classList.add("hidden")
@@ -517,6 +517,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     function category() {
+        back_btn.classList.remove("hidden")
         quizCreateContainer.classList.add("hidden")
         questionNumberDisplay.classList.add("hidden")
         categoryContainer.classList.remove("hidden")
@@ -557,6 +558,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
     function startQuiz() {
+        back_btn.classList.remove("hidden")
         categoryContainer.classList.add("hidden")
         startBtn.classList.add("hidden")
         quizQuestionContainer.classList.remove("hidden")
@@ -637,7 +639,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
     restartBtn.addEventListener("click", () => {
         currentIndex = 0
         score = 0
@@ -646,5 +647,4 @@ document.addEventListener("DOMContentLoaded", () => {
         totalMarks = 0
         startQuiz()
     })
-
 })

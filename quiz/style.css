@@ -320,6 +320,10 @@ h1 {
   background: #d6dafb;
   box-shadow: 0 4px 14px rgba(53, 74, 117, 0.3);
 }
+button a {
+  color: #fff;
+  text-decoration: none;
+}
 
 button {
   background: linear-gradient(45deg, #6b11cbcd, #2574fccd);
