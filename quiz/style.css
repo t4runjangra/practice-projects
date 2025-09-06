@@ -103,7 +103,7 @@ body {
 .quiz-creator h2 {
   font-weight: 700;
   font-size: 2.25rem;
-  color: #1b2a49;;
+  color: #1b2a49;
   margin-bottom: 28px;
   text-align: center;
   padding-bottom: 8px;
@@ -228,6 +228,50 @@ h1 {
   font-weight: 700;
   letter-spacing: 1.2px;
 }
+#category-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.category-btn {
+    background: linear-gradient(45deg, #6b11cbcd, #2574fccd);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 3px 8px rgba(30, 144, 255, 0.4);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.category-btn:hover {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(90, 11, 207, 0.6);
+}
+
+.category-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 6px rgba(0, 191, 255, 0.5);
+}
+
+.category-btn:focus {
+    outline: 3px solid #005f9e;
+    outline-offset: 2px;
+}
+
 
 #question-text {
   margin-bottom: 20px;
@@ -391,7 +435,7 @@ button:focus-visible {
     width: 100%;
   }
   .main-wrapper {
-    flex-direction: column-reverse ;
+    flex-direction: column-reverse;
     margin: 20px auto;
   }
   .quiz-creator {
